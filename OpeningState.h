@@ -7,7 +7,10 @@ class OpeningState : public GarageOpenerState
 	void MoveMoter(GarageOpener* state) 
 	{
 		state->setState(OpenState("OpenState"));
-		//state->getCMotor().MoveMotor((int)state->getCSensor().getDistance());
+		CMotor motor =  state->getCMotor();
+		CSensor sensor = state->getCSensor();
+		//motor.MoveMotor((int)sensor.getDistance());
+		state->setCMotor(motor);
 	}
 	void DoorLatch(GarageOpener* state) {state->setState(OpeningState("OpeningState"));}
 	bool Calibrate(GarageOpener* state) {state->setState(OpeningState("OpeningState"));}
