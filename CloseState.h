@@ -10,7 +10,9 @@ class CloseState : public GarageOpenerState
 			CSensor sensor = state->getCSensor();
 			sensor.ReadData(state->getData());
 			state->setCSensor(sensor);
-			state->getCDoorLatch().setLatchState(false);
+			CDoorLatch latch = state->getCDoorLatch();
+			latch.setLatchState(false);
+			state->setCDoorLatch(latch);
 		}
 	}
 	void ResetMotor(GarageOpener* state) {state->setState(CloseState("CloseState"));}
