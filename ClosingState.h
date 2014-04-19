@@ -7,7 +7,9 @@ class ClosingState : public GarageOpenerState
 	void MoveMoter(GarageOpener* state) 
 	{
 		state->setState(CloseState("CloseState"));
-		state->getCMotor().MoveMotor(-(int)state->getCSensor().getDistance());
+		CMotor motor = state->getCMotor();
+		motor.MoveMotor(0);
+		state->setCMotor(motor);
 		CDoorLatch latch = state->getCDoorLatch();
 		latch.setLatchState(true);
 		state->setCDoorLatch(latch);
